@@ -1,1 +1,1 @@
-En la rama Master estan los archivos del juego.
+En la rama Main estan los archivos actualizados del juego.
