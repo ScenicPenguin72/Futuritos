@@ -23,13 +23,13 @@ public class Juego3Spawner : MonoBehaviour
 
     private float spawnTimer;
     private float elapsedTime = 0f;
-    private const float difficultyDuration = 60f; // Over 100 seconds, difficulty reaches 1
+    private const float difficultyDuration = 60f; 
 
     void Start()
     {
         if (spawnControl == null || spawnControl.AbleToSpawn)
         {
-            Spawn(); // Spawn immediately
+            Spawn();
         }
 
         ResetSpawnTimer();
@@ -52,7 +52,7 @@ public class Juego3Spawner : MonoBehaviour
 
     void ResetSpawnTimer()
     {
-        float difficulty = Mathf.Clamp01(elapsedTime / difficultyDuration); // 0 to 1 over 100 seconds
+        float difficulty = Mathf.Clamp01(elapsedTime / difficultyDuration); 
         float adjustedDelay = Mathf.Lerp(baseSpawnDelay, minSpawnDelay, difficulty);
         float offset = Mathf.Clamp(baseRandomOffset, minRandomOffset, maxRandomOffset);
 
@@ -71,7 +71,6 @@ public class Juego3Spawner : MonoBehaviour
 
         GameObject instance = Instantiate(prefabToSpawn, spawnPosition, Quaternion.identity);
 
-        // Randomly flip on X axis
         if (Random.value < 0.5f)
         {
             Vector3 localScale = instance.transform.localScale;

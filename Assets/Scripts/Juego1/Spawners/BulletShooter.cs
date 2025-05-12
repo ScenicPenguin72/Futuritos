@@ -37,13 +37,8 @@ public class BulletShooter : MonoBehaviour
             return;
 
         difficultyTime += Time.deltaTime;
-
         float difficulty = spawnControl.difficulty;
-
-        // 🔥 Scale fire rate
         float fireRate = Mathf.Max(minFireRate, baseFireRate - difficulty);
-
-        // 🧠 Timers
         fireTimer += Time.deltaTime;
         modeTimer += Time.deltaTime;
 
@@ -52,18 +47,13 @@ public class BulletShooter : MonoBehaviour
             fireTimer = 0f;
             Shoot(difficulty);
         }
+        float adjustedModeInterval = Mathf.Max(1f, modeSwitchInterval - difficulty * difficultyRate);
 
-        
-
-        // 📉 Reduce mode switch interval as difficulty increases
-float adjustedModeInterval = Mathf.Max(1f, modeSwitchInterval - difficulty * difficultyRate);
-
-if (modeTimer >= adjustedModeInterval)
-{
-    modeTimer = 0f;
-    currentMode = (FireMode)(((int)currentMode + 1) % 2);
-}
-
+        if (modeTimer >= adjustedModeInterval)
+        {
+            modeTimer = 0f;
+            currentMode = (FireMode)(((int)currentMode + 1) % 2);
+        }
     }
 
     void Shoot(float difficulty)
@@ -102,21 +92,19 @@ if (modeTimer >= adjustedModeInterval)
     }
 
     void SpawnBullet(Vector2 direction, Vector3 origin, float difficulty)
-{
-    Vector3 spawnPos = multiFireEnabled ? origin : origin + (Vector3)(direction.normalized * bulletOffsetDistance);
+    {
+        Vector3 spawnPos = multiFireEnabled ? origin : origin + (Vector3)(direction.normalized * bulletOffsetDistance);
 
-    GameObject bullet = Instantiate(bulletPrefab, spawnPos, Quaternion.identity);
-    BulletEnemy b = bullet.GetComponent<BulletEnemy>();
+        GameObject bullet = Instantiate(bulletPrefab, spawnPos, Quaternion.identity);
+        BulletEnemy b = bullet.GetComponent<BulletEnemy>();
 
-    b.direction = direction;
-    b.originPoint = spawnPos;
-    b.usePathMotion = false;
-    b.curveRight = false;
-    b.curveRadiusSpeed = 1.5f;
-    b.curveRotationSpeed = 90;
-
-    // 🚀 Difficulty-based speed
-    b.speed = Mathf.Min(maxBulletSpeed, baseBulletSpeed + difficulty*1.35f);
-}
+        b.direction = direction;
+        b.originPoint = spawnPos;
+        b.usePathMotion = false;
+        b.curveRight = false;
+        b.curveRadiusSpeed = 1.5f;
+        b.curveRotationSpeed = 90;
+        b.speed = Mathf.Min(maxBulletSpeed, baseBulletSpeed + difficulty*1.35f);
+    }
 
 }

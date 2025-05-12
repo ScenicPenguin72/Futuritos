@@ -6,8 +6,6 @@ public class RetiradaEnemiga : MonoBehaviour
 {
     private Collider2D playerCollider;
     private HashSet<GameObject> triggeredEnemies = new HashSet<GameObject>();
-
-    [Tooltip("Cooldown time before the same enemy can be triggered again.")]
     public float retriggerCooldown = 5f;
 
     void Start()

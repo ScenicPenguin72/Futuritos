@@ -9,7 +9,7 @@ public class SpawnControl : MonoBehaviour
     public bool AbleToSpawn = true;
 
     [Header("Start Delay")]
-    public float startDelay = 2f; // Delay after game starts before anything spawns
+    public float startDelay = 2f; 
     private bool hasGameStarted = false;
 
     [Header("Difficulty Settings")]
@@ -69,7 +69,6 @@ public class SpawnControl : MonoBehaviour
 
         GameObject instance = Instantiate(prefabToSpawn, spawnPoint.position, Quaternion.identity);
 
-        // Apply traffic light behavior
         ColorCycler cycler = instance.GetComponent<ColorCycler>();
         if (cycler != null)
         {
@@ -77,7 +76,6 @@ public class SpawnControl : MonoBehaviour
             cycler.finalColorDelay = currentFinalDelay;
         }
 
-        // Apply bullet difficulty
         BulletEnemy bullet = instance.GetComponentInChildren<BulletEnemy>();
         if (bullet != null)
         {

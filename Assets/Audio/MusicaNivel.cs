@@ -3,7 +3,7 @@ using UnityEngine;
 public class MusicaNivel : MonoBehaviour
 {
     public AudioClip level2Music;
-    public bool shouldLoop = true;  // Set via Inspector
+    public bool shouldLoop = true;  
 
     void Start()
     {

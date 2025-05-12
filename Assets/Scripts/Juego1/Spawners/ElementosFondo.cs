@@ -41,7 +41,7 @@ public Color bushColor = Color.white;
         }
         else if (useDistanceInsteadOfTime)
         {
-            SpawnNextElementWithDistance(); // Start distance-based spawning
+            SpawnNextElementWithDistance(); 
         }
         else
         {
@@ -67,7 +67,7 @@ public Color bushColor = Color.white;
     {
         while (true)
         {
-            SpawnNextElementAt(spawnPoint.position); // Always spawn at the spawn point
+            SpawnNextElementAt(spawnPoint.position); 
             yield return new WaitForSeconds(spawnDelay);
         }
     }
@@ -88,7 +88,7 @@ public Color bushColor = Color.white;
     {
         Vector3 spawnPos = new Vector3(currentSpawnX, spawnPoint.position.y, spawnPoint.position.z);
         SpawnNextElementAt(spawnPos);
-        currentSpawnX += spawnDistance; // Advance for next
+        currentSpawnX += spawnDistance; 
     }
 
     void SpawnNextElementAt(Vector3 spawnPos)
@@ -109,7 +109,7 @@ public Color bushColor = Color.white;
     SpriteRenderer sr = obj.GetComponent<SpriteRenderer>();
     if (sr != null)
     {
-        if (!spawnBuildingNext) // Apply color only to bushes
+        if (!spawnBuildingNext) 
         {
             sr.color = bushColor;
         }
@@ -119,16 +119,12 @@ public Color bushColor = Color.white;
     
     }
 
-    // Scale
     obj.transform.localScale = Vector3.Scale(obj.transform.localScale, scaleMultiplier);
 
-    // Count buildings
     if (spawnBuildingNext)
     {
         spawnedBuildingsCount++;
     }
-
-    // Alternate pattern
     spawnBuildingNext = !spawnBuildingNext;
 }
 

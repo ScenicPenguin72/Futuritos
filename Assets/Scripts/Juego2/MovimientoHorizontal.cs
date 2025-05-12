@@ -3,8 +3,8 @@ using UnityEngine;
 public class MovimientoHorizontal : MonoBehaviour
 {
     public float velocidadMovimiento = 5f;
-    public float positiveXLimit = 4f; // Right limit from startX
-    public float negativeXLimit = 2f; // Left limit from startX
+    public float positiveXLimit = 4f; 
+    public float negativeXLimit = 2f; 
 
     private Rigidbody2D rb;
     private Vector2 movimiento;
@@ -37,17 +37,17 @@ public class MovimientoHorizontal : MonoBehaviour
 
         if (entradaHorizontal > 0 && !atRightLimit)
         {
-            SetAnimState(1); // Moving right
+            SetAnimState(1); 
          
         }
         else if (entradaHorizontal < 0 && !atLeftLimit)
         {
-            SetAnimState(2); // Moving left
+            SetAnimState(2);
           
         }
         else
         {
-            SetAnimState(0); // Idle
+            SetAnimState(0); 
         }
 
         movimiento = new Vector2(entradaHorizontal, 0).normalized;

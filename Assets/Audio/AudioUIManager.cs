@@ -37,8 +37,8 @@ public class AudioUIManager : MonoBehaviour
             Debug.LogWarning("Music slider not found! Make sure it's tagged as 'Music'.");
         }
 
-        float savedAudioVolume = PlayerPrefs.GetFloat(AudioVolumePref, 1f); 
-        float savedMusicVolume = PlayerPrefs.GetFloat(MusicVolumePref, 1f); 
+        float savedAudioVolume = PlayerPrefs.GetFloat(AudioVolumePref, 0.5f); 
+        float savedMusicVolume = PlayerPrefs.GetFloat(MusicVolumePref, 0.5f); 
 
         if (audioSlider != null)
         {

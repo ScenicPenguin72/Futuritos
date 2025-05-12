@@ -3,8 +3,8 @@ using UnityEngine;
 public class MovimientoVertical : MonoBehaviour
 {
     public float velocidadMovimiento = 5f;
-    public float positiveYLimit = 4f; // Upwards limit from startY
-    public float negativeYLimit = 2f; // Downwards limit from startY
+    public float positiveYLimit = 4f; 
+    public float negativeYLimit = 2f; 
 
     private Rigidbody2D rb;
     private Vector2 movimiento;
@@ -20,7 +20,6 @@ public class MovimientoVertical : MonoBehaviour
 
     void Update()
     {
-        // Skip animator updates while paused
         if (Time.timeScale == 0f)
         {
             movimiento = Vector2.zero;
@@ -30,11 +29,9 @@ public class MovimientoVertical : MonoBehaviour
         float entradaVertical = Input.GetAxisRaw("Vertical");
         float currentY = rb.position.y;
 
-        // Determine if at limits
         bool atUpperLimit = currentY >= startY + positiveYLimit;
         bool atLowerLimit = currentY <= startY - negativeYLimit;
 
-        // Only set animation if not stuck at limit
         if (entradaVertical > 0 && !atUpperLimit)
             SetAnimState(1);
         else if (entradaVertical < 0 && !atLowerLimit)
@@ -47,7 +44,7 @@ public class MovimientoVertical : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Time.timeScale == 0f) return; // Don't move if paused
+        if (Time.timeScale == 0f) return;
 
         float newY = rb.position.y + movimiento.y * velocidadMovimiento * Time.fixedDeltaTime;
         float clampedY = Mathf.Clamp(newY, startY - negativeYLimit, startY + positiveYLimit);

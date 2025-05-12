@@ -77,8 +77,6 @@ public class Vida : MonoBehaviour
             {
                 spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
             }
-
-            // Move along curve to bottom-left
             float curvedT = deathCurve.Evaluate(t);
             transform.position = Vector3.Lerp(deathStartPosition, deathEndPosition, curvedT);
 
@@ -117,7 +115,6 @@ public class Vida : MonoBehaviour
             DisableSpawner();
         }
 
-        // INVULNERABILIDAD Y PARPADEO
         if (isInvulnerable && !isDead)
         {
             invulnerabilityTimer -= Time.deltaTime;
@@ -184,7 +181,7 @@ public class Vida : MonoBehaviour
             spriteRenderer.color = originalColor;
             isFadingOut = true;
             deathStartPosition = transform.position;
-            deathEndPosition = deathStartPosition + new Vector3(-5.5f, -5.5f, 0f); // Adjust this for a more dramatic move
+            deathEndPosition = deathStartPosition + new Vector3(-5.5f, -5.5f, 0f); 
 
             fadeTimer = 0f;
         }
